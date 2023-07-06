@@ -17,6 +17,7 @@ default_data_structure_dir = '数据结构'
 default_algorithm_dir = '算法'
 prometheus_dir = './prometheus'
 default_grpc_dir = 'grpc'
+default_english_dir = 'english'
 
 if not os.path.exists(default_golang_dir):
     os.makedirs(default_golang_dir)
@@ -79,6 +80,11 @@ for filename in os.listdir(args.source_dir):
             # Move the file to the python directory
             shutil.move(os.path.join(args.source_dir, filename),
                         os.path.join(default_design_pattern_dir, filename))
+        # Check if the file contains the keyword 'prometheus'
+        elif 'prometheus' in contents or 'Prometheus' in contents:
+            # Move the file to the prometheus directory
+            shutil.move(os.path.join(args.source_dir, filename),
+                        os.path.join(prometheus_dir, filename))
         # Check if the file contains the keyword '数据结构'
         elif '数据结构' in contents or '栈' in contents or '队列' in contents or '链表' in contents or '树' in contents or '图' in contents:
             # Move the file to the 数据结构 directory
@@ -89,28 +95,27 @@ for filename in os.listdir(args.source_dir):
             shutil.move(os.path.join(args.source_dir, filename),
                         os.path.join(default_algorithm_dir, filename))
             # Move files to Prometheus directory
-        # Check if the file contains the keyword 'prometheus'
-        elif 'prometheus' in contents or 'Prometheus' in contents:
-            # Move the file to the prometheus directory
-            shutil.move(os.path.join(args.source_dir, filename),
-                        os.path.join(prometheus_dir, filename))
         elif 'protobuf' in contents or 'Protobuf' in contents or 'grpc' in contents or 'gRPC' in contents:
             # Move the file to the prometheus directory
             shutil.move(os.path.join(args.source_dir, filename),
                         os.path.join(default_grpc_dir, filename))
+        # Check if the file contains the keyword 'kubectl'
+        elif 'kubectl' in contents or 'kubernetes'.lower() in contents or 'k8s' in contents or 'deployment' in contents or 'pod' in contents:
+            # Move the file to the k8s directory
+            shutil.move(os.path.join(args.source_dir, filename),
+                        os.path.join(args.k8s_dir, filename))
         elif 'git ' in contents or 'Git ' in contents or 'commit' in contents or 'commit' in contents or 'commit' in contents:
             # Move the file to the git directory
             shutil.move(os.path.join(args.source_dir, filename),
                         os.path.join(args.git_dir, filename))
-        # Check if the file contains the keyword 'kubectl'
-        elif 'kubectl' in contents or 'kubernetes' in contents or 'k8s' in contents or 'deployment' in contents or 'pod' in contents:
-            # Move the file to the k8s directory
-            shutil.move(os.path.join(args.source_dir, filename),
-                        os.path.join(args.k8s_dir, filename))
         elif 'linux' in contents or 'tmux' in contents or '进程' in contents or 'yum' in contents or 'Ubuntu' in contents or 'centos' in contents or 'apt' in contents or 'top' in contents:
             # Move the file to the Linux directory
             shutil.move(os.path.join(args.source_dir, filename),
                         os.path.join(args.linux_dir, filename))
+        elif '词根' in contents or '词缀' in contents or '辅音字母' in contents or '英语词典' in contents or '元音字母' in contents or 'centos' in contents or 'apt' in contents or 'top' in contents:
+            # Move the file to the Linux directory
+            shutil.move(os.path.join(args.source_dir, filename),
+                        os.path.join(default_english_dir, filename))
 
         # 语言类
 
